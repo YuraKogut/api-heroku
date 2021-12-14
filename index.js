@@ -1,7 +1,14 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3000;
 const axios = require('axios');
+const http = require("http");
+
+const server = http.createServer(app);
+server.listen(process.env.PORT || 5000, () =>
+  console.log("Server started " + process.env.PORT)
+  );
+
 //sum action
 app.get('/summa', (req, res) => {
 	let a = Number(req.query.a);
@@ -35,8 +42,4 @@ app.get('/getPhrase', async(req,res)=>{
 	catch{
 		res.send('error')
 	}
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
 })
